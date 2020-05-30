@@ -1,2 +1,13 @@
 #!/bin/bash
-tsc ts/*.ts --out out.js
+
+# source
+SRC="ts/"
+
+# destination
+DST="js/"
+
+# compile javascript
+tsc ${SRC}*.ts --out ${DST}out.js
+
+# execute js
+node js/out.js
