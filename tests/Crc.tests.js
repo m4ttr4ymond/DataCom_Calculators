@@ -1,4 +1,13 @@
+/*
+@author:    Matt Raymond
+@date:      05/31/2020
+@version:   1.0.0
+@purpose:   Testing
+*/
+
 const imp = require('../js/Crc');
+
+// Performs tests for CRC
 
 test('CRC of data "101101" and generator "10111"', () => {
     expect(imp.Crc.genCodeword("101101", "10111")).toBe("1011011001");

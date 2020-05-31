@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "tsc ts/*.ts --outDir js/ && jest",
     "lint": "tslint -c tslint.json 'ts/**/*.{ts,tsx}'",
     "pretest": "npm run lint",
     "start": "node js/index.js"

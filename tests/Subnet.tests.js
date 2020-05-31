@@ -1,3 +1,10 @@
+/*
+@author:    Matt Raymond
+@date:      05/31/2020
+@version:   1.0.0
+@purpose:   Testing
+*/
+
 const imp = require('../js/Subnet');
 
 // Using 126.168.0.1 on all mask types
@@ -28,7 +35,7 @@ test('IP address of "126.168.0.1" and subnet mask of "255.255.255.255"', () => {
 });
 
 
-
+// Using other addresses/masks
 test('IP address of "195.45.219.72" and subnet mask of "255.255.255.192"', () => {
     expect(imp.Subnet.getSubnetInfo("195.45.219.72", "255.255.255.192")).toEqual(["195.45.219.64", "195.45.219.127"]);
 });
