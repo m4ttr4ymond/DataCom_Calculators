@@ -1,6 +1,6 @@
 ## ToDo
 - ~~CRC~~
-- Subnet Masks
+- ~~Subnet Masks~~
 - Nyquist's Theorem
 - Converting dB to Signal/Noise
 - Shannon's Theorem
