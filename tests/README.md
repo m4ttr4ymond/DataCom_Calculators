@@ -1,5 +1,6 @@
 ## ToDo
 - ~~CRC~~
+- Subnet Masks
 - Nyquist's Theorem
 - Converting dB to Signal/Noise
 - Shannon's Theorem
@@ -13,7 +14,6 @@
   - RTT_S
   - RTT_D
 - Fragmentation
-- Subnet Masks
 - Cider Address
 - Longest prefix matching
 - Forwarding table
