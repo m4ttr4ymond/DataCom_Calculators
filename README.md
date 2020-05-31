@@ -1,5 +1,5 @@
 # DataCom Calculators
-Matt Raymond  
+Matt Raymond - MSc University of Michigan, Ann Arbor
 
 # About
 The end goal of this project is to create a set of calculators for Chapman University's DataCom (CPSC 353) class to help students check their work while learning about various networking algorithms. This will be implemented with TypeScript and hosted on my personal website, where it will hopefully be a useful resource for anyone taking DataCom in the future.
