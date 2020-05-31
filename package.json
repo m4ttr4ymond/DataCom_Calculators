@@ -1,0 +1,19 @@
+{
+  "name": "DataCom_Calculators",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "./scripts/test.sh",
+    "build:dev": "tsc --watch --preserveWatchOutput",
+    "start": "node js/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "typescript": "^3.7.3"
+  },
+  "dependencies": {
+  }
+}
