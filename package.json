@@ -6,7 +6,6 @@
     "test": "jest",
     "lint": "tslint -c tslint.json 'ts/**/*.{ts,tsx}'",
     "pretest": "npm run lint",
-    "build:dev": "tsc --watch --preserveWatchOutput",
     "start": "node js/index.js"
   },
   "keywords": [],

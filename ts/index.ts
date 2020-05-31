@@ -1,3 +1,3 @@
-import {Crc} from './Crc'
+import {Subnet} from './Subnet'
 
-// console.log("result:", Crc.genCodeword("101101", "10111"));
+// console.log(Subnet.getSubnetInfo("192.168.0.1", "255.255.255.0"));
