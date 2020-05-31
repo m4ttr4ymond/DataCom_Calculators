@@ -1,3 +1,3 @@
 import {Crc} from './Crc'
 
-console.log("result:", Crc.genCodeword("101101", "10111"));
+// console.log("result:", Crc.genCodeword("101101", "10111"));

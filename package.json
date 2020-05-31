@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "./scripts/test.sh",
+    "test": "jest",
+    "lint": "tslint -c tslint.json 'ts/**/*.{ts,tsx}'",
+    "pretest": "npm run lint",
     "build:dev": "tsc --watch --preserveWatchOutput",
     "start": "node js/index.js"
   },
@@ -12,8 +14,21 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "typescript": "^3.7.3"
+    "@types/jest": "^25.2.3",
+    "jest": "^26.0.1",
+    "ts-jest": "^26.1.0",
+    "typescript": "^3.9.3"
   },
-  "dependencies": {
+  "dependencies": {},
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "transform": {
+      "\\.(ts|tsx)$": "/Users/matthewraymond/Desktop/DataCom_Calculators/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "/tests/.*\\.(ts|tsx|js)$"
   }
 }
