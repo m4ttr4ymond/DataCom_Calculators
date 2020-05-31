@@ -30,5 +30,3 @@ export class Crc {
         return dataword << (Mathy.log_2(generator)-1);
     }
 }
-
-// export {Crc}
