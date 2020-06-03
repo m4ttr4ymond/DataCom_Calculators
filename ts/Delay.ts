@@ -21,7 +21,7 @@ export class Delay {
     static tDelay(noBits:[number, Units], tRate:[number, Units]):[number, Units] {
 
         if(tRate[0] === 0) throw new Error("Rate cannot be zero");
-        return [Mathy.r(noBits) / Mathy.r(tRate), Units.second];
+        return Mathy.cTime(Mathy.r(noBits) / Mathy.r(tRate));
     }
 
     /*

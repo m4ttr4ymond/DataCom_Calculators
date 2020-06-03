@@ -53,6 +53,30 @@ export class Mathy {
     static r(pair:[number, Units]):number {
         return pair[0] * pair[1];
     }
+
+    /*
+    PURPOSE:    Finds the appropriate unit of time
+    INPUT:      A number containing a result
+    OUTPUT:     A tuple containing the result
+    */
+    static cTime(res:number):[number, Units] {
+        if (res / Units.millenium >= 1)
+            return [res / Units.millenium, Units.millenium];
+        else if (res / Units.century >= 1)
+            return [res / Units.century, Units.century];
+        else if (res / Units.decade >= 1)
+            return [res / Units.decade, Units.decade];
+        else if (res / Units.year >= 1)
+            return [res / Units.year, Units.year];
+        else if (res / Units.day >= 1)
+            return [res / Units.day, Units.day];
+        else if (res / Units.hour >= 1)
+            return [res / Units.hour, Units.hour];
+        else if (res / Units.minute >= 1)
+            return [res / Units.minute, Units.minute];
+        else
+            return [res, Units.second];
+    }
 }
 
 export enum Units {
