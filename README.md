@@ -26,7 +26,7 @@ These programs will be released under the GNU license, and people can use them f
 | 3      | ~~dB -> Signal/Noise~~     | **06/02/2020** |
 | 4      | ~~Shannon's Theorem~~      | **06/02/2020** |
 | 5      | Transmission delay         |                |
-| 6      | Propigation delay          |                |
+| 6      | Propagation delay          |                |
 | 7      | Bandwidth Delay Product    |                |
 | 8      | Tahoe TCP                  |                |
 | 9      | Tahoe Reno                 |                |
