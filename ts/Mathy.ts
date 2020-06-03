@@ -10,7 +10,6 @@ PURPOSE:    Holds some of the functions that are going to be used in multiple
             classes
 */
 export class Mathy {
-
     /*
     PURPOSE:    Finds the log base 2 of a number (only works on integers)
     INPUT:      A number
