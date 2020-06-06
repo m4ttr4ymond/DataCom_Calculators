@@ -1,6 +1,6 @@
 /*
 @author:    Matt Raymond
-@date:      05/31/2020
+@date:      06/05/2020
 @version:   1.0.0
 @purpose:   Production
 */
@@ -19,9 +19,8 @@ export class Delay {
     OUTPUT:     The transmission delay
     */
     static tDelay(noBits:[number, Units], tRate:[number, Units]):[number, Units] {
-
         if(tRate[0] === 0) throw new Error("Rate cannot be zero");
-        return Mathy.cTime(Mathy.r(noBits) / Mathy.r(tRate));
+        return [Mathy.r(noBits) / Mathy.r(tRate), Units.second];
     }
 
     /*
@@ -32,7 +31,7 @@ export class Delay {
     */
     static pDelay(distance:[number, Units], pSpeed: [number, Units]):[number, Units] {
         if(pSpeed[0] === 0) throw new Error("Speed cannot be zero");
-        return [Mathy.r(distance) / Mathy.r(pSpeed), Units.m];
+        return [Mathy.r(distance) / Mathy.r(pSpeed), Units.second];
     }
 
     /*
@@ -52,6 +51,6 @@ export class Delay {
     OUTPUT:     The BDP
     */
     static bdp(bandwidth: [number, Units], distance:[number, Units], pSpeed: [number, Units]):[number, Units] {
-        return [Mathy.r(bandwidth) * Mathy.r(this.rtt(distance, pSpeed)), Units.Hz];
+        return [Mathy.r(bandwidth) * Mathy.r(this.rtt(distance, pSpeed)), Units.bit];
     }
 }

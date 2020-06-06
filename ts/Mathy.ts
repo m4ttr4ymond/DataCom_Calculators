@@ -53,47 +53,23 @@ export class Mathy {
     static r(pair:[number, Units]):number {
         return pair[0] * pair[1];
     }
-
-    /*
-    PURPOSE:    Finds the appropriate unit of time
-    INPUT:      A number containing a result
-    OUTPUT:     A tuple containing the result
-    */
-    static cTime(res:number):[number, Units] {
-        if (res / Units.millenium >= 1)
-            return [res / Units.millenium, Units.millenium];
-        else if (res / Units.century >= 1)
-            return [res / Units.century, Units.century];
-        else if (res / Units.decade >= 1)
-            return [res / Units.decade, Units.decade];
-        else if (res / Units.year >= 1)
-            return [res / Units.year, Units.year];
-        else if (res / Units.day >= 1)
-            return [res / Units.day, Units.day];
-        else if (res / Units.hour >= 1)
-            return [res / Units.hour, Units.hour];
-        else if (res / Units.minute >= 1)
-            return [res / Units.minute, Units.minute];
-        else
-            return [res, Units.second];
-    }
 }
 
 export enum Units {
     // Data sizes and data rates
-    Bit         = 1,
-    Nibble      = 4,
+    bit         = 1,
+    nibble      = 4,
     Byte        = 8,
 
     // Bits
-    Kb          = 1000 ** 1, // kilobit
-    Mb          = 1000 ** 2, // megabit
-    Gb          = 1000 ** 3, // gigabit
-    Tb          = 1000 ** 4, // terabit
-    Kib         = 1024 ** 1, // kibibit
-    Mib         = 1024 ** 2, // mebibit
-    Gib         = 1024 ** 3, // gibibit
-    Tib         = 1024 ** 4, // tebibit
+    Kbit        = 1000 ** 1, // kilobit
+    Mbit        = 1000 ** 2, // megabit
+    Gbit        = 1000 ** 3, // gigabit
+    Tbit        = 1000 ** 4, // terabit
+    Kibit       = 1024 ** 1, // kibibit
+    Mibit       = 1024 ** 2, // mebibit
+    Gibit       = 1024 ** 3, // gibibit
+    Tibit       = 1024 ** 4, // tebibit
 
     // Bytes
     KB          = 8 * 1000 ** 1, // kilobyte

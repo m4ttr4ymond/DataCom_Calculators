@@ -18,27 +18,27 @@ My goal levels are as follows:
 These programs will be released under the GNU license, and people can use them for whatever they want, no questions asked. However, If you're doing something interesting with it, feel free to let me know.
 
 ## ToDo
-| Number |  Name                      | Date Completed |
-|:-------|:---------------------------|:---------------|
-| 0      | ~~CRC~~                    | **05/30/2020** |
-| 1      | ~~Subnet Masks~~           | **05/31/2020** |
-| 2      | ~~Nyquist's Theorem~~      | **06/02/2020** |
-| 3      | ~~dB -> Signal/Noise~~     | **06/02/2020** |
-| 4      | ~~Shannon's Theorem~~      | **06/02/2020** |
-| 5      | Transmission delay         |                |
-| 6      | Propagation delay          |                |
-| 7      | Bandwidth Delay Product    |                |
-| 8      | Tahoe TCP                  |                |
-| 9      | Tahoe Reno                 |                |
-| 10     | RTO                        |                |
-| 11     | RTT_S                      |                |
-| 12     | RTT_D                      |                |
-| 13     | Fragmentation              |                |
-| 14     | Cider Address              |                |
-| 15     | Longest prefix matching    |                |
-| 16     | Forwarding table           |                |
-| 17     | Dijkstra's algorithm       |                |
-| 18     | Distance Vector            |                |
-| 19     | Collision Detection        |                |
-| 20     | CSMA/CD Minimum Frame Size |                |
-| 21     | 802.11 Address Fields      |                |
+| Number |  Name                       | Date Completed |
+|:-------|:----------------------------|:---------------|
+| 0      | ~~CRC~~                     | **05/30/2020** |
+| 1      | ~~Subnet Masks~~            | **05/31/2020** |
+| 2      | ~~Nyquist's Theorem~~       | **06/02/2020** |
+| 3      | ~~dB -> Signal/Noise~~      | **06/02/2020** |
+| 4      | ~~Shannon's Theorem~~       | **06/02/2020** |
+| 5      | ~~Transmission delay~~      | **06/05/2020** |
+| 6      | ~~Propagation delay~~       | **06/05/2020** |
+| 7      | ~~Bandwidth Delay Product~~ | **06/05/2020** |
+| 8      | Tahoe TCP                   |                |
+| 9      | Tahoe Reno                  |                |
+| 10     | RTO                         |                |
+| 11     | RTT_S                       |                |
+| 12     | RTT_D                       |                |
+| 13     | Fragmentation               |                |
+| 14     | Cider Address               |                |
+| 15     | Longest prefix matching     |                |
+| 16     | Forwarding table            |                |
+| 17     | Dijkstra's algorithm        |                |
+| 18     | Distance Vector             |                |
+| 19     | Collision Detection         |                |
+| 20     | CSMA/CD Minimum Frame Size  |                |
+| 21     | 802.11 Address Fields       |                |
