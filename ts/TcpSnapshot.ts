@@ -11,7 +11,6 @@ import {Mathy, Units} from './Mathy'
 /*
 PURPOSE:    General class for TCP
 */
-
 export class TcpSnapshot {
     ssThresh: number;
     cwnd: number;

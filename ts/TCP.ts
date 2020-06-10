@@ -17,9 +17,8 @@ export abstract class TCP {
     abstract currentState: TcpSnapshot;
     abstract events: {[id:number]:TcpInput};
 
-    // abstract constructor(init: TcpSnapshot, events:[TcpInput]);
     abstract runSim():TcpSnapshot[]
-    abstract timeoutResponse():void;
-    abstract dupAckResponse():void;
-    abstract fine():void;
+    // abstract timeoutResponse():void;
+    // abstract dupAckResponse():void;
+    // abstract fine():void;
 }
