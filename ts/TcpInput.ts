@@ -11,6 +11,11 @@ import {Mathy, Units} from './Mathy'
 export class TcpInput {
     event: TcpEvent;
     timeStamp: number;
+
+    constructor(e:TcpEvent, t:number) {
+        this.event = e;
+        this.timeStamp = t;
+    }
 }
 
 export enum TcpEvent {

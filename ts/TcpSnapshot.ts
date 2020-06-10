@@ -15,6 +15,13 @@ PURPOSE:    General class for TCP
 export class TcpSnapshot {
     ssThresh: number;
     cwnd: number;
-    state: number;
+    state: string;
     timeStamp: number;
+
+    constructor(sst:number = 16, c:number = 1, s:string = 'ss', ts:number = 0) {
+        this.ssThresh = sst;
+        this.cwnd = c;
+        this.state = s;
+        this.timeStamp = ts;
+    }
 }
