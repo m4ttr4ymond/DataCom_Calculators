@@ -23,4 +23,13 @@ export class TcpSnapshot {
         this.state = s;
         this.timeStamp = ts;
     }
+
+    copy(ts:TcpSnapshot):TcpSnapshot {
+        this.ssThresh = ts.ssThresh;
+        this.cwnd = ts.cwnd;
+        this.state = ts.state;
+        this.timeStamp = ts.timeStamp;
+
+        return this;
+    }
 }

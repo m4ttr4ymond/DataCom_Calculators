@@ -63,54 +63,105 @@ export class Tahoe extends TCP {
     OUTPUT:     A list of events. This list has one element if everything is
                 fine, or two if there is an error.
     */
-    // ToDo: This code is a little spaghetti and could stand to be updated
     calcNewValues(c:TcpSnapshot, e:TcpInput):TcpSnapshot[] {
         // Create a list of snapshots
-        let res:TcpSnapshot[] = [new TcpSnapshot()];
+        let res:TcpSnapshot[] = [new TcpSnapshot().copy(c)];
 
-        // If there is an event
+        // Take care of event
+        res = this.handleInput(res, e);
+
+        // Perform the normal calculation
+        return this.fine(res);
+    }
+
+    /*
+    PURPOSE:    Responds to individual TCPInput inputs, executing the
+                appropriate functions
+    INPUT:      A list of TCP snapshots and a TCP input
+    OUTPUT:     A list of TCP snapshots
+    */
+    handleInput(res:TcpSnapshot[], e:TcpInput):TcpSnapshot[] {
+        // If there is an input
         if(e !== undefined) {
-            // If it's a valid event
-            if(e.event == TcpEvent.timeout || e.event == TcpEvent.tdACK) {
-                // Update the timestamp
-                res[0].timeStamp = c.timeStamp;
-                // Update the values as described in class
-                res[0].ssThresh = Math.floor(c.cwnd/2);
-                res[0].cwnd = 1;
-                res[0].state = 'ss';
-
-                // Add a new snapshot to the list
-                res.push(new TcpSnapshot());
-                // Redefine c to make the later code work
-                c = res[0];
-            } else throw new Error("invalid TCP event");
+            switch (e.event) {
+                // All reponses are the same in TCP Tahoe
+                case TcpEvent.timeout:
+                    return this.generalResponse(res);
+                case TcpEvent.tdACK:
+                    return this.generalResponse(res);
+                // Make sure that the response was valid
+                default:
+                    throw new Error("invalid TCP event");
+            }
         }
+        else return res;
+    }
 
+    /*
+    PURPOSE:    Performs the Tahoe response for a timeout, calculates its TCP
+                snapshot, and adds it to a list of TCP snapshots
+    INPUT:      A list of TCP snapshots
+    OUTPUT:     A list of TCP snapshots
+    */
+    timeoutResponse(res:TcpSnapshot[]):TcpSnapshot[] {
+        return this.genErrorResponse(res);
+    }
+
+    /*
+    PURPOSE:    Performs the Tahoe response for a duplicate ACK response,
+                calculates its TCP snapshot, and adds it to a list of TCP
+                snapshots
+    INPUT:      A list of TCP snapshots
+    OUTPUT:     A list of TCP snapshots
+    */
+    dupAckResponse(res:TcpSnapshot[]):TcpSnapshot[] {
+        return this.genErrorResponse(res)
+    }
+
+    /*
+    PURPOSE:    Tahoe uses the same response for both timeouts and triple-
+                duplicate ACKs, so this provides a general response for the
+                two
+    INPUT:      A list of TCP snapshots
+    OUTPUT:     A list of TCP snapshots
+    */
+    genErrorResponse(res:TcpSnapshot[]):TcpSnapshot[] {
+        // Update the values as described in class
+        res[0].ssThresh = Math.floor(res[0].cwnd/2);
+        res[0].cwnd = 1;
+        res[0].state = 'ss';
+
+        // Add a new snapshot to the list
+        res.push(new TcpSnapshot());
+
+        return res;
+    }
+
+    /*
+    PURPOSE:    Performs the calculation for when everything goes fine in the
+                TCP response
+    INPUT:      A list of TCP snapshots
+    OUTPUT:     A list of TCP snapshots
+    */
+    fine(res:TcpSnapshot[]):TcpSnapshot[] {
         // Update the timestamp and ssThreshold
-        res[res.length-1].timeStamp = c.timeStamp+1;
-        res[res.length-1].ssThresh = c.ssThresh;
+        res[res.length-1].timeStamp = res[0].timeStamp+1;
+        res[res.length-1].ssThresh = res[0].ssThresh;
 
-        // Based on the state
-        switch (c.state) {
-            // If Slow Start
-            case 'ss':
+        // Perform an action based on the state
+        if(res[0].state == 'ss') { // Slow Start
                 // Update the command window
-                if(c.cwnd*2 > c.ssThresh)
-                    res[res.length-1].cwnd = c.ssThresh;
+                if(res[0].cwnd*2 > res[0].ssThresh)
+                    res[res.length-1].cwnd = res[0].ssThresh;
                 else
-                    res[res.length-1].cwnd = c.cwnd*2;
-                break;
-            // If Collision Avoidance
-            case 'ca':
-                // Update the command window
-                res[res.length-1].cwnd = c.cwnd+1;
-                break;
-            // If it's neither
-            default:
-                // Throw an error
-                throw new Error("invalid TCP state");
-                break;
+                    res[res.length-1].cwnd = res[0].cwnd*2;
         }
+        else if(res[0].state == 'ca') { //Collision Avoidance
+            // Update the command window
+            res[res.length-1].cwnd = res[0].cwnd+1;
+        }
+        else // Throw an error
+            throw new Error("invalid TCP state");
 
         // Update the value of the state
         if(res[res.length-1].cwnd >= res[res.length-1].ssThresh)
@@ -118,7 +169,6 @@ export class Tahoe extends TCP {
         else
             res[res.length-1].state = 'ss'; // Slow start
 
-        // Return the result
         return res;
     }
 }
