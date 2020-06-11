@@ -20,5 +20,12 @@ export class TcpInput {
 
 export enum TcpEvent {
     timeout,
-    tdACK
+    tdACK,
+    newACK
+}
+
+export enum TcpState {
+    SlowStart = "ss",
+    CongestionAvoidance = "ca",
+    FastRecovery = "fr"
 }

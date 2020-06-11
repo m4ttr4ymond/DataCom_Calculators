@@ -9,6 +9,8 @@
 */
 
 import {Mathy, Units} from './Mathy'
+import {TcpState} from './TcpInput'
+
 
 
 /*
@@ -17,10 +19,10 @@ PURPOSE:    General class for TCP
 export class TcpSnapshot {
     ssThresh: number;
     cwnd: number;
-    state: string;
+    state: TcpState;
     timeStamp: number;
 
-    constructor(sst:number = 16, c:number = 1, s:string = 'ss', ts:number = 0) {
+    constructor(sst:number = 16, c:number = 1, s:TcpState = TcpState.SlowStart, ts:number = 0) {
         this.ssThresh = sst;
         this.cwnd = c;
         this.state = s;
