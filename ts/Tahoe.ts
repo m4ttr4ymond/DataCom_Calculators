@@ -1,7 +1,10 @@
 /*
 @author:    Matt Raymond
 @date:      06/06/2020
-@updated:   06/10/2020
+@update_history:
+    06/06/2020: Started
+    06/10/2020: Finished
+    06/11/2020: Improved modularity
 @version:   1.0.0
 @purpose:   Production
 */

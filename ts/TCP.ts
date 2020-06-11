@@ -1,6 +1,9 @@
 /*
 @author:    Matt Raymond
 @date:      06/06/2020
+@update_history:
+    06/06/2020: Started/Finished
+    06/11/2020: Changed function arguments and return types
 @version:   1.0.0
 @purpose:   Production
 */
