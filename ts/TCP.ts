@@ -4,6 +4,7 @@
 @update_history:
     06/06/2020: Started/Finished
     06/11/2020: Changed function arguments and return types
+    06/20/2020: Added "dup" to the arguments for "dupAckResponse"
 @version:   1.0.0
 @purpose:   Production
 */
@@ -22,6 +23,6 @@ export abstract class TCP {
 
     abstract runSim():TcpSnapshot[];
     abstract timeoutResponse(res:TcpSnapshot[]):TcpSnapshot[];
-    abstract dupAckResponse(res:TcpSnapshot[]):TcpSnapshot[];
+    abstract dupAckResponse(res:TcpSnapshot[], dup:number):TcpSnapshot[];
     abstract fine(res:TcpSnapshot[]):TcpSnapshot[];
 }

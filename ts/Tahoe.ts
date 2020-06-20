@@ -5,6 +5,7 @@
     06/06/2020: Started
     06/10/2020: Finished
     06/11/2020: Improved modularity
+    06/20/2020: Fixed dup acks
 @version:   1.0.0
 @purpose:   Production
 */
@@ -90,8 +91,8 @@ export class Tahoe extends TCP {
                 // All reponses are the same in TCP Tahoe
                 case TcpEvent.timeout:
                     return this.timeoutResponse(res);
-                case TcpEvent.tdACK:
-                    return this.dupAckResponse(res);
+                case TcpEvent.dACK:
+                    return this.dupAckResponse(res, e.acks);
                 // Make sure that the response was valid
                 default:
                     throw new Error("invalid TCP event");
@@ -114,11 +115,19 @@ export class Tahoe extends TCP {
     PURPOSE:    Performs the Tahoe response for a duplicate ACK response,
                 calculates its TCP snapshot, and adds it to a list of TCP
                 snapshots
-    INPUT:      A list of TCP snapshots
+    INPUT:      A list of TCP snapshots, and a number of duplicate ACKs
     OUTPUT:     A list of TCP snapshots
     */
-    dupAckResponse(res:TcpSnapshot[]):TcpSnapshot[] {
-        return this.genErrorResponse(res)
+    dupAckResponse(res:TcpSnapshot[], dup:number):TcpSnapshot[] {
+        if(dup === null)
+            throw new Error("You cannot have a null number of duplicate AKCs");
+
+        if(dup >= 3) {
+            return this.genErrorResponse(res)
+        }
+        else {
+            return res;
+        }
     }
 
     /*

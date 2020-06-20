@@ -3,6 +3,7 @@
 @date:      06/11/2020
 @update_history:
     06/11/2020: Started
+    06/20/2020: Fixed Fast Recovery
 @version:   1.0.0
 @purpose:   Production
 */
@@ -17,6 +18,9 @@ PURPOSE:    Performs calculations for TCP Tahoe
 */
 export class Reno extends TCP {
     currentState: TcpSnapshot;
+    // Allows for the exponential growth during fast recovery
+    // We use the offset to boost the baseline of cwd
+    offset:number = 0;
 
     // A list of events in the simulation
     events: {[id:number]:TcpInput};
@@ -88,8 +92,8 @@ export class Reno extends TCP {
                 // All reponses are the same in TCP Tahoe
                 case TcpEvent.timeout:
                     return this.timeoutResponse(res);
-                case TcpEvent.tdACK:
-                    return this.dupAckResponse(res);
+                case TcpEvent.dACK:
+                    return this.dupAckResponse(res, e.acks);
                 case TcpEvent.newACK:
                     return this.newAckResponse(res);
                 // Make sure that the response was valid
@@ -119,16 +123,22 @@ export class Reno extends TCP {
 
     /*
     PURPOSE:
-    INPUT:      A list of TCP snapshots
+    INPUT:      A list of TCP snapshots, and a number of duplicate acks
     OUTPUT:     A list of TCP snapshots
     */
-    dupAckResponse(res:TcpSnapshot[]):TcpSnapshot[] {
-        res[0].ssThresh = Math.floor(res[0].cwnd/2);
-        res[0].cwnd = res[0].ssThresh;
-        res[0].state = TcpState.FastRecovery;
+    dupAckResponse(res:TcpSnapshot[], dup:number):TcpSnapshot[] {
+        if(dup === null)
+            throw new Error("You cannot have a null number of duplicate AKCs");
 
-        // Add a new snapshot to the list
-        res.push(new TcpSnapshot());
+        if(dup >= 3) {
+            res[0].ssThresh = Math.floor(res[0].cwnd/2);
+            this.offset = res[0].ssThresh + dup - 1;
+            res[0].cwnd = this.offset + 1;
+            res[0].state = TcpState.FastRecovery;
+
+            // Add a new snapshot to the list
+            res.push(new TcpSnapshot());
+        }
 
         return res;
     }
@@ -139,6 +149,7 @@ export class Reno extends TCP {
     OUTPUT:     A list of TCP snapshots
     */
     newAckResponse(res) {
+        this.offset = 0;
         res[0].cwnd = res[0].ssThresh;
         res[0].state = TcpState.CongestionAvoidance;
 
@@ -158,6 +169,7 @@ export class Reno extends TCP {
         // Update the timestamp and ssThreshold
         res[res.length-1].timeStamp = res[0].timeStamp+1;
         res[res.length-1].ssThresh = res[0].ssThresh;
+        res[res.length-1].state = res[0].state;
 
         // Perform an action based on the state
         if(res[0].state == TcpState.SlowStart) {
@@ -171,8 +183,9 @@ export class Reno extends TCP {
             // Update the command window
             res[res.length-1].cwnd = res[0].cwnd+1;
         }
-        else if(res[0].state == TcpState.FastRecovery)
-            res[res.length-1].cwnd = res[0].cwnd*2;
+        else if(res[0].state == TcpState.FastRecovery) {
+            res[res.length-1].cwnd = (res[0].cwnd-this.offset)*2 + this.offset;
+        }
         else // Throw an error
             throw new Error("invalid TCP state");
 
