@@ -6,7 +6,7 @@
     "test": "tsc ts/*.ts --outDir js/ && jest",
     "lint": "tslint -c tslint.json 'ts/**/*.{ts,tsx}'",
     "pretest": "npm run lint",
-    "start": "tsc ts/*.ts --outDir js/ && node js/testing.js"
+    "start": "tsc ts/*.ts --outDir js/ && node js/tcpTesting.js"
   },
   "keywords": [],
   "author": "",

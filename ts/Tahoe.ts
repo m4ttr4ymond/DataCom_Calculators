@@ -47,7 +47,7 @@ export class Tahoe extends TCP {
     */
     runSim(no:number = 5):TcpSnapshot[] {
         // Create a list of states
-        let states:TcpSnapshot[] = [new TcpSnapshot().copy(this.currentState)];
+        const states:TcpSnapshot[] = [new TcpSnapshot().copy(this.currentState)];
         // Cycle through time quanta
         for (let t = 0; t < no; t++) {
             // Calculate the outputs for every event
@@ -161,14 +161,14 @@ export class Tahoe extends TCP {
         res[res.length-1].ssThresh = res[0].ssThresh;
 
         // Perform an action based on the state
-        if(res[0].state == TcpState.SlowStart) { // Slow Start
+        if(res[0].state === TcpState.SlowStart) { // Slow Start
                 // Update the command window
                 if(res[0].cwnd*2 > res[0].ssThresh)
                     res[res.length-1].cwnd = res[0].ssThresh;
                 else
                     res[res.length-1].cwnd = res[0].cwnd*2;
         }
-        else if(res[0].state == TcpState.CongestionAvoidance) {
+        else if(res[0].state === TcpState.CongestionAvoidance) {
             // Update the command window
             res[res.length-1].cwnd = res[0].cwnd+1;
         }

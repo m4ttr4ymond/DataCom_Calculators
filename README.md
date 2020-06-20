@@ -37,10 +37,10 @@ interesting with it, feel free to let me know.
 | 5      | ~~Transmission delay~~      | **06/05/2020** |
 | 6      | ~~Propagation delay~~       | **06/05/2020** |
 | 7      | ~~Bandwidth Delay Product~~ | **06/05/2020** |
-| 8      | ~~Tahoe TCP~~               | **06/10/2020** |
-| 9      | Tahoe Reno                  |                |
+| 8      | ~~Tahoe TCP~~               | **06/20/2020** |
+| 9      | ~~Reno TCP~~                | **06/20/2020** |
 | 10     | RTO                         |                |
-| 11     | RTT_S                       |                |
+| 11     | RTT_S                       | **06/20/2020** |
 | 12     | RTT_D                       |                |
 | 13     | Fragmentation               |                |
 | 14     | Cider Address               |                |
